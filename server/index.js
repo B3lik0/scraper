@@ -1,6 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const express = require("express");
+const cors = require("cors");
 async function getWebsiteData() {
   try {
     const link = "https://coinmarketcap.com";
@@ -23,9 +24,9 @@ async function getWebsiteData() {
       "Rank",
       "Name",
       "Price",
-      "1h",
-      "24h",
-      "7d",
+      "UnaH",
+      "VeintiCuatroH",
+      "SieteD",
       "MarketCap",
       "Volume",
       "CirculatingSupply"
@@ -59,6 +60,7 @@ async function getWebsiteData() {
 }
 
 const app = express();
+app.use(cors());
 app.get("/cryptos", async (req, res) => {
   try {
     const data = await getWebsiteData();
