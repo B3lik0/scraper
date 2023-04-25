@@ -4,7 +4,6 @@
 
 <script>
 import axios from "axios";
-import * as cheerio from "cheerio";
 export default {
   name: "HelloWorld",
   props: {
@@ -16,29 +15,19 @@ export default {
   methods: {
     async getWebsiteData() {
       try {
-        const link = "https://coinmarketcap.com";
+        const link = "http://localhost:3000/cryptos"
         const config = {
           method: "GET",
           url: link,
           maxBodyLength: Infinity,
-          headers: {
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "*",
-          },
+          // headers: {
+          //   "Access-Control-Allow-Headers": "Content-Type",
+          //   "Access-Control-Allow-Origin": "*",
+          //   "Access-Control-Allow-Methods": "*",
+          // },
         };
         const data = await axios(config);
-        console.log(data);
-        let $ = cheerio.load(data);
-        const selector =
-          "#__next > div > div.main-content > div.sc-1a736df3-0.PimrZ.cmc-body-wrapper > div > div:nth-child(1) > div.sc-beb003d5-2.bkNrIb > table > tbody > tr";
-
-        console.log(selector);
-
-        $(selector).each((parentID, parentEL) => {
-          console.log(parentID);
-          console.log(parentEL);
-        });
+        console.log(data);  
       } catch (err) {
         console.log(err);
       }
